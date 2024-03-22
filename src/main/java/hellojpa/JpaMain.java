@@ -17,13 +17,14 @@ public class JpaMain {
 
         try {
             Member member = new Member();
-            member.setId(1L);
-            member.setName("HelloA");
+//            member.setId(1L);
+            member.setUsername("HelloA");
+            member.setRoleType(RoleType.USER);
 
             em.persist(member);
 
             Member findMember = em.find(Member.class, 1L);
-            findMember.setName("HelloAA");
+            findMember.setUsername("HelloAA");
 
             List<Member> result = em.createQuery("select m from Member as m", Member.class)
                     .setFirstResult(0)
@@ -32,7 +33,7 @@ public class JpaMain {
 
             System.out.println(result);
 
-            em.remove(findMember);
+//            em.remove(findMember);
 
             tx.commit();
         } catch(Exception e) {
