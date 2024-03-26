@@ -1,6 +1,8 @@
 package hellojpa;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member2 {
@@ -23,6 +25,13 @@ public class Member2 {
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     private Locker2 locker;
+
+    /*@ManyToMany
+    @JoinTable(name = "MEMBER_PRODUCT")
+    private List<Product2> products = new ArrayList<>();*/
+
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
     public Long getId() {
         return id;
